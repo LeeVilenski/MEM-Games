@@ -67,6 +67,12 @@
     .shot { aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
     .shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s ease; }
     .card:hover .shot img { transform: scale(1.04); }
+    .shot.multi { position: relative; }
+    .shot.multi img { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease, transform .3s ease; }
+    .shot.multi img.on { opacity: 1; }
+    .dots { position: absolute; left: 0; right: 0; bottom: 10px; display: flex; justify-content: center; gap: 6px; pointer-events: none; }
+    .dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.45); box-shadow: 0 0 0 1px rgba(0,0,0,.25); transition: background .3s; }
+    .dots i.on { background: #fff; }
 
     .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     h2 {
@@ -111,7 +117,7 @@
       </a>
 
       <a class="card" href="https://tourdeboundy.vercel.app">
-        <div class="shot"><img src="screenshots/tour-de-boundy.jpg" alt="Tour de Boundy level select" loading="lazy"></div>
+        <div class="shot multi"><img class="on" src="screenshots/tour-de-boundy.jpg" alt="Tour de Boundy level select" loading="lazy"><img src="screenshots/tour-de-boundy-gameplay.jpg" alt="Will Boundy riding the Wheelers Hill Climb past the crowd" loading="lazy"></div>
         <div class="body">
           <h2>Tour De Boundy</h2>
           <p class="tag">A ragdoll physics cycling game starring Will Boundy, who never rests. Pedal, hop and flip through seven Devon stages from Devon Lanes to the Torbay Velodrome, swat away a Garmin that keeps begging you to recover, and crash in spectacular fashion.</p>
@@ -120,7 +126,7 @@
       </a>
 
       <a class="card" href="https://nepaltrekk.vercel.app">
-        <div class="shot"><img src="screenshots/nepal-trek.jpg" alt="Nepal Trek elevation map" loading="lazy"></div>
+        <div class="shot multi"><img class="on" src="screenshots/nepal-trek.jpg" alt="Nepal Trek elevation map" loading="lazy"><img src="screenshots/nepal-trek-gameplay.jpg" alt="Ryan face-down on the trail: Knees 0, Nepal 1" loading="lazy"></div>
         <div class="body">
           <h2>Nepal Trekk</h2>
           <p class="tag">A wobbly walking sim based on Ryan's real Annapurna Base Camp trek. Pack his bag, then swing one leg at a time up 80 km of the real route over eight days, from Birethanti to base camp at 4,130 m and back down. Overpack and you'll wobble; forget the poles and you'll fall.</p>
@@ -140,5 +146,28 @@
 
     <footer>MEM Games</footer>
   </div>
+  <script>
+    // Cards with more than one screenshot fade between them.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.shot.multi').forEach((shot, n) => {
+      const imgs = [...shot.querySelectorAll('img')];
+      const dots = document.createElement('div'); dots.className = 'dots';
+      imgs.forEach((_, i) => { const d = document.createElement('i'); if (!i) d.className = 'on'; dots.appendChild(d); });
+      shot.appendChild(dots);
+      let i = 0;
+      const show = (next) => {
+        imgs[i].classList.remove('on'); dots.children[i].classList.remove('on');
+        i = next % imgs.length;
+        imgs[i].classList.add('on'); dots.children[i].classList.add('on');
+      };
+      if (reduce) {
+        const card = shot.closest('.card');
+        card.addEventListener('mouseenter', () => show(1));
+        card.addEventListener('mouseleave', () => show(0));
+      } else {
+        setTimeout(() => setInterval(() => show(i + 1), 3500), n * 1700);
+      }
+    });
+  </script>
 </body>
 </html>
