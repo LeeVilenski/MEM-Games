@@ -89,13 +89,11 @@
 
     .card.soon .play { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
     .badge {
-      position: absolute; top: 12px; left: 12px;
+      position: absolute; top: 12px; right: 12px;
       background: var(--accent); color: var(--accent-ink);
       font-weight: 600; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase;
       padding: 5px 10px; border-radius: 999px;
     }
-    .shot.art { position: relative; background: #0f3b2e; }
-    .shot.art svg { width: 100%; height: 100%; display: block; }
 
     footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 48px; }
   </style>
@@ -153,24 +151,11 @@
         </div>
       </a>
       <a class="card soon" href="https://mem-table-tennis.vercel.app">
-        <div class="shot art">
-          <svg viewBox="0 0 320 200" role="img" aria-label="A table tennis table with a ball mid-rally">
-            <rect width="320" height="200" fill="#123a5c"/>
-            <polygon points="70,150 250,150 220,60 100,60" fill="#1d6fb8" stroke="#fff" stroke-width="2.5"/>
-            <line x1="160" y1="60" x2="160" y2="150" stroke="#fff" stroke-width="1.5"/>
-            <polygon points="82,108 238,108 236,96 84,96" fill="rgba(255,255,255,.18)" stroke="#e8ecff" stroke-width="1.5"/>
-            <path d="M118 140 Q160 30 205 80" fill="none" stroke="#ffd23f" stroke-width="2" stroke-dasharray="4 5" opacity=".8"/>
-            <circle cx="205" cy="80" r="6" fill="#ff8a1f"/>
-            <ellipse cx="205" cy="104" rx="6" ry="2" fill="rgba(0,0,0,.3)"/>
-            <g transform="translate(104 150) rotate(-25)"><rect x="-4" y="6" width="8" height="18" rx="3" fill="#7a4a24"/><circle r="15" fill="#d8323a"/></g>
-            <g transform="translate(232 54) rotate(30)"><rect x="-3" y="5" width="6" height="12" rx="2" fill="#7a4a24"/><circle r="10" fill="#222"/></g>
-          </svg>
-          <span class="badge">Coming soon</span>
-        </div>
+        <div class="shot multi"><img class="on" src="screenshots/mem-table-tennis.jpg" alt="MEM Table Tennis title screen in the MEM office, with Lee picked as the player" loading="lazy"><img src="screenshots/mem-table-tennis-gameplay.jpg" alt="A quick match against the AI, the ball arcing over the net with its trail showing" loading="lazy"><span class="badge">Early access</span></div>
         <div class="body">
           <h2>MEM Table Tennis</h2>
-          <p class="tag">The next MEM game is on its way. Right now it's a physics sandbox for getting the bat and ball feeling right; the full game is coming soon.</p>
-          <span class="play">Sneak peek ▶</span>
+          <p class="tag">3D table tennis built around spin, pace and office politics. Flick the mouse to loop, chop, smash and hook the ball, take on the AI in quick matches or a World Tour, sharpen up with training drills, or play friends online in singles or doubles.</p>
+          <span class="play">Early access ▶</span>
         </div>
       </a>
     </main>
